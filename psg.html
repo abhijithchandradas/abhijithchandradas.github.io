@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000;
+            height: 600;
+            background-color: #222222;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"font": {"color": "white"}, "id": "Keylor  Navas", "label": "Keylor  Navas", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "\u00c1ngel  Di Mar\u00eda", "label": "\u00c1ngel  Di Mar\u00eda", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Pablo  Sarabia", "label": "Pablo  Sarabia", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Achraf  Hakimi", "label": "Achraf  Hakimi", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Sergio  Ramos", "label": "Sergio  Ramos", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Leandro  Paredes", "label": "Leandro  Paredes", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Ander  Herrera", "label": "Ander  Herrera", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Mauro  Icardi", "label": "Mauro  Icardi", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Lionel Messi", "label": "Lionel Messi", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Sergio  Rico", "label": "Sergio  Rico", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Juan  Bernat", "label": "Juan  Bernat", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Abdou  Diallo", "label": "Abdou  Diallo", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Rafinha", "label": "Rafinha", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Layvin  Kurzawa", "label": "Layvin  Kurzawa", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "El Chadaille  Bitshiabu", "label": "El Chadaille  Bitshiabu", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Kylian  Mbapp\u00e9", "label": "Kylian  Mbapp\u00e9", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Alexandre  Letellier", "label": "Alexandre  Letellier", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Presnel  Kimpembe", "label": "Presnel  Kimpembe", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Colin  Dagba", "label": "Colin  Dagba", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Thilo  Kehrer", "label": "Thilo  Kehrer", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Julian  Draxler", "label": "Julian  Draxler", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Marco  Verratti", "label": "Marco  Verratti", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Gianluigi  Donnarumma", "label": "Gianluigi  Donnarumma", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Marquinhos", "label": "Marquinhos", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Neymar Jr", "label": "Neymar Jr", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Georginio  Wijnaldum", "label": "Georginio  Wijnaldum", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Xavi  Simons", "label": "Xavi  Simons", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"from": "Keylor  Navas", "to": "\u00c1ngel  Di Mar\u00eda", "weight": 1, "width": 1}, {"from": "Keylor  Navas", "to": "Pablo  Sarabia", "weight": 1, "width": 1}, {"from": "Keylor  Navas", "to": "Achraf  Hakimi", "weight": 1, "width": 1}, {"from": "Keylor  Navas", "to": "Sergio  Ramos", "weight": 1, "width": 1}, {"from": "\u00c1ngel  Di Mar\u00eda", "to": "Leandro  Paredes", "weight": 1, "width": 1}, {"from": "\u00c1ngel  Di Mar\u00eda", "to": "Pablo  Sarabia", "weight": 1, "width": 1}, {"from": "\u00c1ngel  Di Mar\u00eda", "to": "Ander  Herrera", "weight": 1, "width": 1}, {"from": "\u00c1ngel  Di Mar\u00eda", "to": "Mauro  Icardi", "weight": 1, "width": 1}, {"from": "\u00c1ngel  Di Mar\u00eda", "to": "Lionel Messi", "weight": 1, "width": 1}, {"from": "\u00c1ngel  Di Mar\u00eda", "to": "Achraf  Hakimi", "weight": 1, "width": 1}, {"from": "\u00c1ngel  Di Mar\u00eda", "to": "Sergio  Ramos", "weight": 1, "width": 1}, {"from": "Pablo  Sarabia", "to": "Sergio  Rico", "weight": 1, "width": 2}, {"from": "Pablo  Sarabia", "to": "Ander  Herrera", "weight": 1, "width": 1}, {"from": "Pablo  Sarabia", "to": "Achraf  Hakimi", "weight": 1, "width": 1}, {"from": "Pablo  Sarabia", "to": "Sergio  Ramos", "weight": 1, "width": 3}, {"from": "Pablo  Sarabia", "to": "Juan  Bernat", "weight": 1, "width": 1}, {"from": "Achraf  Hakimi", "to": "Abdou  Diallo", "weight": 1, "width": 1}, {"from": "Achraf  Hakimi", "to": "Rafinha", "weight": 1, "width": 1}, {"from": "Achraf  Hakimi", "to": "Mauro  Icardi", "weight": 1, "width": 1}, {"from": "Achraf  Hakimi", "to": "Sergio  Ramos", "weight": 1, "width": 1}, {"from": "Sergio  Ramos", "to": "Sergio  Rico", "weight": 1, "width": 2}, {"from": "Sergio  Ramos", "to": "Ander  Herrera", "weight": 1, "width": 1}, {"from": "Sergio  Ramos", "to": "Juan  Bernat", "weight": 1, "width": 1}, {"from": "Sergio  Rico", "to": "Ander  Herrera", "weight": 1, "width": 1}, {"from": "Sergio  Rico", "to": "Juan  Bernat", "weight": 1, "width": 1}, {"from": "Ander  Herrera", "to": "Juan  Bernat", "weight": 1, "width": 1}, {"from": "Layvin  Kurzawa", "to": "Abdou  Diallo", "weight": 1, "width": 2}, {"from": "Layvin  Kurzawa", "to": "El Chadaille  Bitshiabu", "weight": 1, "width": 1}, {"from": "Layvin  Kurzawa", "to": "Kylian  Mbapp\u00e9", "weight": 1, "width": 2}, {"from": "Layvin  Kurzawa", "to": "Alexandre  Letellier", "weight": 1, "width": 1}, {"from": "Layvin  Kurzawa", "to": "Presnel  Kimpembe", "weight": 1, "width": 1}, {"from": "Layvin  Kurzawa", "to": "Colin  Dagba", "weight": 1, "width": 1}, {"from": "Abdou  Diallo", "to": "El Chadaille  Bitshiabu", "weight": 1, "width": 1}, {"from": "Abdou  Diallo", "to": "Kylian  Mbapp\u00e9", "weight": 1, "width": 2}, {"from": "Abdou  Diallo", "to": "Alexandre  Letellier", "weight": 1, "width": 1}, {"from": "Abdou  Diallo", "to": "Presnel  Kimpembe", "weight": 1, "width": 1}, {"from": "Abdou  Diallo", "to": "Colin  Dagba", "weight": 1, "width": 1}, {"from": "El Chadaille  Bitshiabu", "to": "Kylian  Mbapp\u00e9", "weight": 1, "width": 1}, {"from": "El Chadaille  Bitshiabu", "to": "Alexandre  Letellier", "weight": 1, "width": 1}, {"from": "El Chadaille  Bitshiabu", "to": "Presnel  Kimpembe", "weight": 1, "width": 1}, {"from": "El Chadaille  Bitshiabu", "to": "Colin  Dagba", "weight": 1, "width": 1}, {"from": "Kylian  Mbapp\u00e9", "to": "Alexandre  Letellier", "weight": 1, "width": 1}, {"from": "Kylian  Mbapp\u00e9", "to": "Presnel  Kimpembe", "weight": 1, "width": 1}, {"from": "Kylian  Mbapp\u00e9", "to": "Colin  Dagba", "weight": 1, "width": 1}, {"from": "Alexandre  Letellier", "to": "Presnel  Kimpembe", "weight": 1, "width": 1}, {"from": "Alexandre  Letellier", "to": "Colin  Dagba", "weight": 1, "width": 1}, {"from": "Presnel  Kimpembe", "to": "Colin  Dagba", "weight": 1, "width": 1}, {"from": "Thilo  Kehrer", "to": "Julian  Draxler", "weight": 1, "width": 2}, {"from": "Marco  Verratti", "to": "Gianluigi  Donnarumma", "weight": 1, "width": 1}, {"from": "Leandro  Paredes", "to": "Mauro  Icardi", "weight": 1, "width": 1}, {"from": "Leandro  Paredes", "to": "Lionel Messi", "weight": 1, "width": 1}, {"from": "Leandro  Paredes", "to": "Marquinhos", "weight": 1, "width": 1}, {"from": "Mauro  Icardi", "to": "Rafinha", "weight": 1, "width": 1}, {"from": "Mauro  Icardi", "to": "Lionel Messi", "weight": 1, "width": 1}, {"from": "Lionel Messi", "to": "Rafinha", "weight": 1, "width": 1}, {"from": "Lionel Messi", "to": "Neymar Jr", "weight": 1, "width": 1}, {"from": "Marquinhos", "to": "Rafinha", "weight": 1, "width": 1}, {"from": "Marquinhos", "to": "Neymar Jr", "weight": 1, "width": 1}, {"from": "Rafinha", "to": "Neymar Jr", "weight": 1, "width": 2}, {"from": "Georginio  Wijnaldum", "to": "Xavi  Simons", "weight": 1, "width": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
